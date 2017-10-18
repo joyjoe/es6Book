@@ -3,7 +3,7 @@ function wrapper(generatorFunc) {
     let generatorObj = generatorFunc(...args);
     generatorObj.next();
     return generatorObj;
-  }
+  };
 }
 
 var wrapped = wrapper(function*() {

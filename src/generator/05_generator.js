@@ -7,6 +7,7 @@ function* number() {
   yield 2;
   yield 3;
   return 4;
+  // eslint-disable-next-line
   yield 5;
 }
 

@@ -6,7 +6,7 @@ const arr = [1, [2, 3],
 ];
 var flat = function* flat(arr) {
   for (var item of arr) {
-    if (typeof item !== 'number') {
+    if (typeof item !== "number") {
       yield* flat(item);
     } else {
       yield item;
@@ -27,7 +27,7 @@ console.log(rs[Symbol.iterator]() === rs);
 console.log("========");
 
 function* kong() {
-  yield this.x = 'kong';
+  yield this.x = "kong";
 }
 
 var obj = {};

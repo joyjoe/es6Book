@@ -8,6 +8,7 @@ function* foo() {
 function* bar() {
   yield 1;
   const v = yield* foo();
+
   console.log(`v=${v}`);
   yield 4;
 }
