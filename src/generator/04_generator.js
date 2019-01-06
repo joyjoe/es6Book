@@ -16,7 +16,7 @@ console.log("------");
 
 function* fibonacci() {
   let [prev, curr] = [0, 1];
-  for (;;) {
+  while(true){
     [prev, curr] = [curr, curr + prev];
     yield curr;
   }

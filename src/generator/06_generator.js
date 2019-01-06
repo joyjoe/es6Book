@@ -1,3 +1,4 @@
+/**
 function* createError() {
   while (true) {
     try {
@@ -15,16 +16,19 @@ function* createError() {
 
 try {
   const g = createError();
-  g.next();
-  g.throw("d");
-  g.throw("c");
-  g.throw("b");
-  g.throw("a");
-  g.next();
-  g.next();
+  console.log(g.next()); //{v: undefined  done:false}
+  g.throw("d"); // inner: d
+  // g.throw("c");
+  // g.throw("b");
+  // g.throw("a");
+  // 由于generator内部有try...catch所以前面的throw不会影响下一次的next()
+  console.log(g.next()); // 在generator outer try, ...之后打印 {v: undefined done: false}
+  // g.next();
 } catch (error) {
-  console.log("outer: ", error);
+  console.log("outer: ", error); //outer: c
 }
+*/
+
 
 console.log("------");
 
@@ -45,14 +49,15 @@ function* nocatch() {
 
 var g1 = nocatch();
 try {
+  console.log(g1.next()); //hello {v: undefined  done: false}
+  console.log(g1.throw()); // !!!! no-grunt {v: undefined  done: false}
   console.log(g1.next());
-  console.log(g1.throw());
-  // console.log(g1.next());
-  // console.log(g1.next());
+  console.log(g1.next());
 } catch (e) {
   console.log("outer error");
   console.log(g1.next());
 }
-console.log(g1.next());
-console.log(g1.next());
-console.log(g1.next());
+// console.log(g1.next()); // no - gulp {v: undefined  done: false}
+// console.log(g1.next()); // no - bower {v: undefined  done: false}
+console.log(g1.next()); // {v: undefined  done: true}
+

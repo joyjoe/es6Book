@@ -1,3 +1,4 @@
+// 无限遍历
 function* f() {
   for (var i = 0; true; i++) {
     var reset = yield i;
@@ -8,14 +9,16 @@ function* f() {
 }
 
 var g = f();
-console.log(g.next()); //0
-console.log(g.next()); //1
-console.log(g.next()); //2
-console.log(g.next()); //3
-console.log(g.next(true)); //0
-console.log(g.next()); //1
+console.log(g.next()); //{v: 0 done:false}
+console.log(g.next()); //{v: 1}
+console.log(g.next()); //{v: 2}
+console.log(g.next()); //{v: 3}
+// 想要其重置计数就需要传递next参数
+console.log(g.next(true)); //{v: 0}
+console.log(g.next()); //{v: 1}
 
 
+/**
 function* foo(x) {
   var y = 2 * (yield x + 1);
   var z = yield y / 3;
@@ -31,3 +34,4 @@ var rs1 = foo(5);
 console.log(rs1.next()); // 6 false
 console.log(rs1.next(12)); // 8 false
 console.log(rs1.next(13)); // 42 true
+*/
